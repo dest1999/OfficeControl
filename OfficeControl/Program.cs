@@ -1,3 +1,7 @@
+
+//TODO Модифицируйте главную страницу так, чтобы она отображала какую-либо ViewModel, к примеру - информацию о работе вымышленного офиса.
+//Данные могут быть константными либо браться из базы данных
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
