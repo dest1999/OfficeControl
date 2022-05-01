@@ -7,15 +7,17 @@ namespace OfficeControl.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IRepository<Employee> _employeeRepository;
+        public HomeController(ILogger<HomeController> logger, IRepository<Employee> repository)
         {
             _logger = logger;
+            _employeeRepository = repository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var employees = _employeeRepository.GetAll();
+            return View(employees);
         }
 
         public IActionResult Privacy()
