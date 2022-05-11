@@ -4,12 +4,13 @@ public class InRAMRepo : IRepository<Employee>
 {
     private readonly List<Employee> employees = new()
     { 
-        new Employee() { Name = "Alex", Age = 30, Division = Division.Shop, Salary = 100500 },
-        new Employee() { Name = "Bob", Age = 22 },
-        new Employee() { Name = "Catherine", Age = 27 }
+        new Employee() { Id = 1, Name = "Alex", Age = 30, Division = Division.Shop, Salary = 100500 },
+        new Employee() { Id = 2, Name = "Bob", Age = 22 },
+        new Employee() { Id = 3, Name = "Catherine", Age = 27 }
     };
     public void Create(Employee human)
     {
+        human.Id = 1 + employees[^1].Id;
         employees.Add(human);
     }
 
