@@ -46,6 +46,20 @@ namespace OfficeControl.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Delete(int id)
+        {
+            var employee = employeeRepository.GetById(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Employee employee)
+        {
+            employeeRepository.Delete(employee.Id);
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();

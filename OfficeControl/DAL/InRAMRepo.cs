@@ -27,9 +27,9 @@ public class InRAMRepo : IRepository<Employee>
         }
     }
 
-    public bool Delete(string name)
+    public bool Delete(int id)
     {
-        var deletedQty = employees.RemoveAll(e => e.Name == name);
+        var deletedQty = employees.RemoveAll(e => e.Id == id);
         if (deletedQty > 0)
         {
             return true;

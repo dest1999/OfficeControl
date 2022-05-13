@@ -16,6 +16,7 @@
             <th>Div</th>
             <th>Salary</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
                 <td>@item.Salary</td>
                 <td>
                     <a asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id" >edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id">delete</a>
                 </td>
             </tr>
         }
