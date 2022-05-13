@@ -23,7 +23,6 @@ namespace OfficeControl.Controllers
 
         public IActionResult Edit(int id)
         {
-            ModelState.Clear();
             var employee = employeeRepository.GetById(id);
             return View(employee);
         }
@@ -35,9 +34,16 @@ namespace OfficeControl.Controllers
             return RedirectToAction("Index");
         }
 
-        public void Add([FromForm] Employee employee)
+        public IActionResult Add()
+        {
+            return View(new Employee());
+        }
+
+        [HttpPost]
+        public IActionResult Add(Employee employee)
         {
             employeeRepository.Create(employee);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
