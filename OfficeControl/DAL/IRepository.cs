@@ -7,5 +7,6 @@
         void Update(T human);
         bool Delete(string name);
         IEnumerable<T> GetAll();
+        T? GetById(int id);
     }
 }

@@ -13,6 +13,19 @@ public class InRAMRepo : IRepository<Employee>
         human.Id = 1 + employees[^1].Id;
         employees.Add(human);
     }
+    public Employee? Read(string name)
+    {
+        return employees.FirstOrDefault(e => e.Name == name);
+    }
+
+    public void Update(Employee human)
+    {
+        var tmpEmployee = GetById(human.Id);
+        if (tmpEmployee != null)
+        {
+            tmpEmployee.CopyFrom(human);
+        }
+    }
 
     public bool Delete(string name)
     {
@@ -26,16 +39,7 @@ public class InRAMRepo : IRepository<Employee>
 
     public IEnumerable<Employee> GetAll() => employees;
 
-    public Employee? Read(string name)
-    {
-        return employees.FirstOrDefault(e => e.Name == name);
-    }
-
-    public void Update(Employee human)
-    {
-        throw new NotImplementedException();
-    }
-
+    public Employee? GetById(int id) => employees.FirstOrDefault(e => e.Id == id);
 
 
 

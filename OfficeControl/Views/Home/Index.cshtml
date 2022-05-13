@@ -15,7 +15,7 @@
             <th>Age</th>
             <th>Div</th>
             <th>Salary</th>
-            <th>Edit</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -28,7 +28,7 @@
                 <td>@item.Division </td>
                 <td>@item.Salary</td>
                 <td>
-                    <a asp-controller="e">edit</a>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id" >edit</a>
                 </td>
             </tr>
         }
@@ -38,6 +38,7 @@
 
 <div>
     <p>
+        <a asp-controller="Home" asp-action="Add">Create new</a>
         <br />List formed in: @DateTime.Now
     </p>
 

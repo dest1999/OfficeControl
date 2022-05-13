@@ -20,6 +20,26 @@ namespace OfficeControl.Controllers
             return View(employees);
         }
 
+
+        public IActionResult Edit(int id)
+        {
+            ModelState.Clear();
+            var employee = employeeRepository.GetById(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Employee employee)
+        {
+            employeeRepository.Update(employee);
+            return RedirectToAction("Index");
+        }
+
+        public void Add([FromForm] Employee employee)
+        {
+            employeeRepository.Create(employee);
+        }
+
         public IActionResult Privacy()
         {
             return View();
