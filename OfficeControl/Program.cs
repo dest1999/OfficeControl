@@ -1,6 +1,13 @@
+
+//TODO Модифицируйте главную страницу так, чтобы она отображала какую-либо ViewModel, к примеру - информацию о работе вымышленного офиса.
+//Данные могут быть константными либо браться из базы данных
+
+using OfficeControl;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSingleton<IRepository<Employee>, InRAMRepo>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -10,7 +17,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    //app.UseHsts();
 }
 
 app.UseHttpsRedirection();

@@ -6,3 +6,44 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@model IEnumerable<Employee>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Div</th>
+            <th>Salary</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @{
+        foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Age </td>
+                <td>@item.Division </td>
+                <td>@item.Salary</td>
+                <td>
+                    <a asp-controller="Home" asp-action="Edit" asp-route-id="@item.Id" >edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@item.Id">delete</a>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+<div>
+    <p>
+        <a asp-controller="Home" asp-action="Add">Create new</a>
+        <br />List formed in: @DateTime.Now
+    </p>
+
+</div>

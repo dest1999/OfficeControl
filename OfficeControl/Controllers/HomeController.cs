@@ -7,15 +7,57 @@ namespace OfficeControl.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IRepository<Employee> employeeRepository;
+        public HomeController(ILogger<HomeController> logger, IRepository<Employee> repository)
         {
             _logger = logger;
+            employeeRepository = repository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var employees = employeeRepository.GetAll();
+            return View(employees);
+        }
+
+
+        public IActionResult Edit(int id)
+        {
+            var employee = employeeRepository.GetById(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Employee employee)
+        {
+            employeeRepository.Update(employee);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Add()
+        {
+            return View(new Employee());
+        }
+
+        [HttpPost]
+        public IActionResult Add(Employee employee)
+        {
+            employeeRepository.Create(employee);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var employee = employeeRepository.GetById(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Employee employee)
+        {
+            employeeRepository.Delete(employee.Id);
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
